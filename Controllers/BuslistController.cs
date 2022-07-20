@@ -21,7 +21,7 @@ public class BuslistController : Controller
     {
         return await _busServices.GetAsync();
     }
-     
+
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Buslist buslist)
@@ -33,17 +33,19 @@ public class BuslistController : Controller
 
 
 
-    // [HttpPut("{id}")]
-    //  public async Task<IActionResult> AddToBuslist(string id, [FromBody] string movieId){
-    //     await _busServices.AddToBuslistAsync(id, movieId);
-    //     return NoContent();
-    //  }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(string id, Buslist updatebus)
+    {
+        await _busServices.UpdateAsync(id, updatebus);
+        return NoContent();
+    }
 
 
 
     [HttpDelete("{id}")]
-     public async Task<IActionResult> Delete(string id){
+    public async Task<IActionResult> Delete(string id)
+    {
         await _busServices.DeleteAsync(id);
         return NoContent();
-     }
+    }
 }

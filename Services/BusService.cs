@@ -25,12 +25,9 @@ public class BusService{
         return await _buslistCollection.Find(new BsonDocument()).ToListAsync();
     }
 
-    // public async Task AddToBuslistAsync(string id, string movieId){
-    //     FilterDefinition<Buslist> filter = Builders<Buslist>.Filter.Eq("Id", id);
-    //     UpdateDefinition<Buslist> update = Builders<Buslist>.Update.AddToSet<string>("items", movieId);
-    //     await _buslistCollection.UpdateOneAsync(filter, update);
-    //     return;
-    // }
+    public async Task UpdateAsync(string id, Buslist updatebus){
+       await _buslistCollection.ReplaceOneAsync(x=>x.Id==id,updatebus);
+    }
 
     public async Task DeleteAsync(string id){
         FilterDefinition<Buslist> filter = Builders<Buslist>.Filter.Eq("Id", id);
